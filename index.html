@@ -86,11 +86,9 @@
             /* Clears input field that matches the ID */
             function clearInput(inptID) {
                 var inpt = $("#inpt" + inptID);
-                console.log(inpt.val());
-                inpt.val('')
-                // if (inpt.val() !== "") {
-                //     inpt.val('');
-                // }
+                if (inpt.val() !== "") {
+                    inpt.val('');
+                }
                 console.log(inpt.val());
             }
 
@@ -102,16 +100,7 @@
 
             function getDateTime(){
               var currentDate = "Generated at: " + new Date().toLocaleString()
-
               return currentDate;
-              // var datetime = "Generated at: " + currentdate.getDate() + "/"
-              //   + (currentdate.getMonth()+1)  + "/" 
-              //   + currentdate.getFullYear() + " "  
-              //   + currentdate.getHours() + ":"  
-              //   + currentdate.getMinutes() + ":" 
-              //   + currentdate.getSeconds();
-
-              // return datetime;
             }
 
             function generatePrintDate(){
