@@ -30,8 +30,8 @@ $( document ).ready(function() {
     }
 
     function clearValidationMsgs() {
-      $('#barcode-form').closest('.form-control').removeClass('is-invalid');
-      $('#barcode-form').closest('.form-control').removeClass('is-valid');
+      $('.form-control').removeClass('is-invalid');
+      $('.form-control').removeClass('is-valid');
     }
 
     /* Generate date and time string */
@@ -174,7 +174,7 @@ $( document ).ready(function() {
           }
       },
       messages: {
-        nhsNum: "Warning: Invalid NHS Number (Failed Mod11 check)",
+        nhsNum: "Warning: Invalid NHS Number (Mod11 check failed)",
         postcode: "Warning: Invalid Postcode (Not valid UK postcode)",
         phoneNum: "Warning: Invalid Phone Number (Not valid UK phone number)",
         dob: "Warning: Invalid DOB (Not between 6 and 10 characters)"
