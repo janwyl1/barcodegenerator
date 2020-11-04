@@ -21,26 +21,46 @@
               <div class="col-sm-12 col-lg-3">
                 <form>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">NHS Number</label>
-                      <input type="text" class="form-control" id="input1">
+                      <label for="">NHS Number</label>
+                      <input type="text" class="form-control barcode-inpt" id="input1">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Hospital Number</label>
-                      <input type="text" class="form-control" id="input2">
+                      <label for="">First Name</label>
+                      <input type="text" class="form-control barcode-inpt" id="input2">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Phone Number</label>
-                        <input type="text" class="form-control" id="input3">
-                      </div>
+                      <label for="">Surname</label>
+                      <input type="text" class="form-control barcode-inpt" id="input3">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Date of Birth</label>
+                      <input type="text" class="form-control barcode-inpt" id="input4">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Address Line 1</label>
+                      <input type="text" class="form-control barcode-inpt" id="input5">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Postcode</label>
+                    <input type="text" class="form-control barcode-inpt" id="input6">
+                </div>                                     
+                    <div class="form-group">
+                        <label for="">Phone Number</label>
+                        <input type="text" class="form-control barcode-inpt" id="input7">
+                    </div>
                     <button type="submit" class="btn btn-danger noPrint" id="btn-clear">Clear</button>
                     <button type="submit" class="btn btn-success noPrint" id="btn-print">Print</button>
                   </form>
                  
               </div>
-              <div class="col-sm-12 col-lg-8 offset-lg-1 barcodes">
+              <div class="col-sm-12 col-lg-8 offset-lg-1  barcodes">
                 <svg id="barcode1" class="barcode"></svg>
                 <svg id="barcode2" class="barcode"></svg>
                 <svg id="barcode3" class="barcode"></svg>
+                <svg id="barcode4" class="barcode"></svg>
+                <svg id="barcode5" class="barcode"></svg>
+                <svg id="barcode6" class="barcode"></svg>
+                <svg id="barcode7" class="barcode"></svg>
 
                 <small class="print-date"></small>
               </div>
@@ -69,6 +89,14 @@
             var inpt1 =  $( "#input1" );
             var inpt2 =  $( "#input2" );
             var inpt3 =  $( "#input3" );
+            var inpt4 =  $( "#input4" );
+            var inpt5 =  $( "#input5" );
+            var inpt6 =  $( "#input6" );
+            var inpt7 =  $( "#input7" );
+
+            // var allInpts = $('input[type="text"]');
+
+            // console.log(allInpts);
 
 
             /* Uses JsBarcode library - https://lindell.me/JsBarcode/ */
@@ -83,23 +111,26 @@
                 });
             }
 
-            /* Clears input field that matches the ID */
-            function clearInput(inptID) {
-                var inpt = $("#inpt" + inptID);
-                if (inpt.val() !== "") {
-                    inpt.val('');
+            /* Clear all input fields */
+            function clearAllInputs() {
+              $('.barcode-inpt').each(function(i){
+                if ($(this).val() !== "") {
+                  $(this).val("");
                 }
-                console.log(inpt.val());
+              })
             }
 
-            function clearAllInputs() {
-                clearInput("1");
-                clearInput("2");
-                clearInput("3");
+            function clearAllSvgs() {
+              $('.barcode').each(function(i){
+                console.log($this);
+                // if ($(this).val()) {
+                  $(this).empty();
+                // }
+              })
             }
 
             function getDateTime(){
-              var currentDate = "Generated at: " + new Date().toLocaleString('en-GB')
+              var currentDate = "Generated: " + new Date().toLocaleString('en-GB')
               return currentDate;
             }
 
@@ -114,40 +145,23 @@
             // clearAllInputs();
 
             /* Attach change event listeners */
-            inpt1.change(function(e) { 
-                e.preventDefault();
-                if (inpt1.val() !== "") {
-                    generateBarcode("1", inpt1.val()); 
+            $('.barcode-inpt').change(function(e){
+              e.preventDefault();
+              if ($(this).val() !== "") {
+                    generateBarcode($(this)[0].id.slice(-1), $(this).val()); 
                     generatePrintDate();
-                }   
-            });
-            inpt2.change(function(e) {
-                e.preventDefault();
-                if (inpt2.val() !== "") {
-                    generateBarcode("2", inpt2.val());
-                    generatePrintDate();
-                }
-            });
-            inpt3.change(function(e) {
-                e.preventDefault();
-                if (inpt3.val() !== "") {
-                    generateBarcode("3", inpt3.val());
-                    generatePrintDate();
-                }
-            });
+              }   
+            })
 
             /* Attach click event listeners */
             $('#btn-clear').click(function(e){
-                // e.preventDefault();
+                e.preventDefault();
                 clearAllInputs();
             })
 
-
+            /* Trigger print dialogue */
             $('#btn-print').click(function(e){
-                // hide everything except the barcodes and title + print it. 
-                // maybe display date printed too?
                 window.print() 
-
             })
         });
 

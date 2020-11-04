@@ -1,15 +1,16 @@
-/* @media screen {
-    .print-date {
-        display: none;
-    }
-} */
-
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
 .barcodes {
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
 }
 .barcode {
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 12px;
 }
 
 @media print {
@@ -17,4 +18,11 @@
     .print-date {
         display: block;
     }
+
+   .col-sm-12 {
+       float: left !important;
+       width: 50% !important;
+       max-width: 50%;
+   }
+
 } 
