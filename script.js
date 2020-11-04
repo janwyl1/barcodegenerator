@@ -29,6 +29,11 @@ $( document ).ready(function() {
       })
     }
 
+    function clearValidationMsgs() {
+      $('#barcode-form').closest('.form-control').removeClass('is-invalid');
+      $('#barcode-form').closest('.form-control').removeClass('is-valid');
+    }
+
     /* Generate date and time string */
     function getDateTime(){
       var currentDate = "Generated: " + new Date().toLocaleString('en-GB')
@@ -76,6 +81,7 @@ $( document ).ready(function() {
         e.preventDefault();
         clearAllInputs();
         clearAllSvgs();
+        clearValidationMsgs();
     });
 
     /* Trigger print dialogue when print is clicked */
@@ -156,17 +162,22 @@ $( document ).ready(function() {
           phoneNum: {
             ukPhoneNum: true
           },
-          firstName: {
-            minlength: 1
-          },
-          lastName: {
-            minlength: 1
+          // firstName: {
+          //   minlength: 1
+          // },
+          // lastName: {
+          //   minlength: 1
+          // },
+          dob: {
+            minlength: 6,
+            maxlength: 10
           }
       },
       messages: {
-        nhsNum: "Warning: Invalid NHS Number",
-        postcode: "Warning: Invalid Postcode",
-        phoneNum: "Warning: Invalid Phone Number"
+        nhsNum: "Warning: Invalid NHS Number (Failed Mod11 check)",
+        postcode: "Warning: Invalid Postcode (Not valid UK postcode)",
+        phoneNum: "Warning: Invalid Phone Number (Not valid UK phone number)",
+        dob: "Warning: Invalid DOB (Not between 6 and 10 characters)"
       },
       highlight: function(element) {
         jQuery(element).closest('.form-control').addClass('is-invalid');
