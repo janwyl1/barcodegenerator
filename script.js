@@ -91,33 +91,34 @@ $( document ).ready(function() {
     
     /* HANDLE FORM VALIDATION */
 
-    /* Validate a postcode */
+    /* Validate a postcode using  GOV.UK Postcode Regex 
+      Source: https://stackoverflow.com/questions/164979/regex-for-matching-uk-postcodes 
+      Source2: https://www.gov.uk/government/publications/bulk-data-transfer-for-sponsors-xml-schema
+    */
     $.validator.addMethod("ukPostcode", function(value, element) {
-      // GOV.UK Postcode Regex 
-      // Source: https://stackoverflow.com/questions/164979/regex-for-matching-uk-postcodes 
-      // Source2: https://www.gov.uk/government/publications/bulk-data-transfer-for-sponsors-xml-schema
       return this.optional( element ) || /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])))) [0-9][A-Za-z]{2})$/.test( value );
     }, 'Please enter a valid postcode.');
 
+    /* Validate a phone number 
+      Source: https://stackoverflow.com/questions/11518035/regular-expression-for-gb-based-and-only-numeric-phone-number
+    */
     $.validator.addMethod("ukPhoneNum", function(value, element) {
-      // Source: https://stackoverflow.com/questions/11518035/regular-expression-for-gb-based-and-only-numeric-phone-number
       return this.optional( element ) || /^(((\+44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$/.test( value );
     }, 'Please enter a valid phone number.');
 
     
-    /* Validate an NHS Number */
+    /* Validate an NHS Number 
+      Source: https://github.com/spikeheap/nhs-number-validator
+      Generate valid NHS numbers: http://danielbayley.uk/nhs-number/
+    */
     $.validator.addMethod("mod11", function(value, element) {
-      // Source: https://github.com/spikeheap/nhs-number-validator
-      // Generate valid NHS numbers: http://danielbayley.uk/nhs-number/
       function multiplyByPosition(digit, index) {
-        // multiple each digit by 11  minus its position (indexed from 1)
         return digit * (11 - (index+1));
       }
       function addTogether(previousValue, currentValue){
         return previousValue + currentValue;
       }
       function validate(nhsNumber){
-        // pre-flight checks
         if(
           nhsNumber === undefined ||
           nhsNumber === null ||
@@ -126,28 +127,21 @@ $( document ).ready(function() {
         ){
           return false;
         }
-        // convert numbers to strings, for internal consistency
         if(Number.isInteger(nhsNumber)){
           nhsNumber = nhsNumber.toString();
         }
-        // Step 1: Multiply each of the first 9 numbers by (11 - position indexed from 1)
-        // Step 2: Add the results together
-        // Step 3: Divide the total by 11 to get the remainder
         var nhsNumberAsArray = nhsNumber.split('');
         var remainder = nhsNumberAsArray.slice(0,9)
                                   .map(multiplyByPosition)
                                   .reduce(addTogether, 0) % 11;
         var checkDigit = 11 - remainder;
-        // replace 11 for 0
         if(checkDigit === 11){
           checkDigit = 0;
         }
         var providedCheckDigit = nhsNumberAsArray[9];
-        // Do the check digits match?
         return checkDigit === Number(providedCheckDigit);
       }
-      // Return result to $.validator
-      return this.optional( element ) || validate(value);
+      return this.optional( element ) || validate(value); // Return result to $.validator
     }, 'Please enter a valid NHS number.');
 
     /* Initialize Validator */
