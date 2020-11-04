@@ -2,7 +2,7 @@
 $( document ).ready(function() {
 
     /* See JsBarcode library - https://lindell.me/JsBarcode/ */
-    /* Generates a barcode based on val, assigns it to svg with corresponding barcodeID */
+    /* Generates a barcode based on val, assigns it to <svg> with corresponding barcodeID */
     function generateBarcode(barcodeID, val) {
         JsBarcode("#barcode" + barcodeID, val, {
         format: "CODE39",
@@ -38,7 +38,6 @@ $( document ).ready(function() {
     /* Print generated date and time */
     function generatePrintDate(){
       var datetime = getDateTime();
-      console.log(datetime);
       $('.print-date').text(datetime)
     }
 
@@ -47,12 +46,23 @@ $( document ).ready(function() {
       return str.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
     }
 
+    /* Remove spaces from string */
+    function removeSpaces(str) {
+      return str.replace(/ /gi, '')
+    }
 
     
     /* ATTACH EVENT LISTENERS */
-    /* Generate barcode when input field is changed. Remove special characters */
+    /* Generate barcode when input field is changed. Remove special characters. Remove spaces from nhsNumbers, phoneNumbers and DOB's*/
     $('.barcode-inpt').change(function(e){
       e.preventDefault();
+      
+      // remove spaces
+      var el = $(this)[0];
+      if (el.name === "nhsNum" || el.name === "phoneNum" || el.name === "dob") { 
+        $(this).val(removeSpaces($(this).val()));
+      }
+
       var inptVal = $(this).val();
       if (inptVal !== "") {
             var cleanVal = removeSpecialChars(inptVal);
@@ -145,17 +155,26 @@ $( document ).ready(function() {
           },
           phoneNum: {
             ukPhoneNum: true
+          },
+          firstName: {
+            minlength: 1
+          },
+          lastName: {
+            minlength: 1
           }
       },
-      // messages: {
-      //   nhsNum: "NHS Number may be invalid",
-      //   firstName: "Must be a valid first name"
-      // },
+      messages: {
+        nhsNum: "Warning: Invalid NHS Number",
+        postcode: "Warning: Invalid Postcode",
+        phoneNum: "Warning: Invalid Phone Number"
+      },
       highlight: function(element) {
         jQuery(element).closest('.form-control').addClass('is-invalid');
+        jQuery(element).closest('.form-control').removeClass('is-valid');
       },
       unhighlight: function(element) {
           jQuery(element).closest('.form-control').removeClass('is-invalid');
+          jQuery(element).closest('.form-control').addClass('is-valid');
       },
       errorElement: 'span',
       errorClass: 'invalid-feedback',
