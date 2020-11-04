@@ -113,19 +113,16 @@
 
             /* Clear all input fields */
             function clearAllInputs() {
-              $('.barcode-inpt').each(function(i){
+              $('.barcode-inpt').each(function(){
                 if ($(this).val() !== "") {
                   $(this).val("");
                 }
               })
             }
-
+            
             function clearAllSvgs() {
-              $('.barcode').each(function(i){
-                console.log($this);
-                // if ($(this).val()) {
+              $('.barcode').each(function(){
                   $(this).empty();
-                // }
               })
             }
 
@@ -157,6 +154,7 @@
             $('#btn-clear').click(function(e){
                 e.preventDefault();
                 clearAllInputs();
+                clearAllSvgs();
             })
 
             /* Trigger print dialogue */
