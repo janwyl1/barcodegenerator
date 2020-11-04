@@ -85,19 +85,6 @@
 
         /* When page has loaded */
         $( document ).ready(function() {
-            /* Declare re-usable input variables */
-            var inpt1 =  $( "#input1" );
-            var inpt2 =  $( "#input2" );
-            var inpt3 =  $( "#input3" );
-            var inpt4 =  $( "#input4" );
-            var inpt5 =  $( "#input5" );
-            var inpt6 =  $( "#input6" );
-            var inpt7 =  $( "#input7" );
-
-            // var allInpts = $('input[type="text"]');
-
-            // console.log(allInpts);
-
 
             /* Uses JsBarcode library - https://lindell.me/JsBarcode/ */
             /* Generates a barcode based on val, assigns it to svg with corresponding barcodeID */
@@ -119,7 +106,7 @@
                 }
               })
             }
-            
+
             function clearAllSvgs() {
               $('.barcode').each(function(){
                   $(this).empty();
@@ -136,10 +123,6 @@
               console.log(datetime);
               $('.print-date').text(datetime)
             }
-
-       
-            // Clear inputs when we first load + refresh page 
-            // clearAllInputs();
 
             /* Attach change event listeners */
             $('.barcode-inpt').change(function(e){
