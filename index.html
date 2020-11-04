@@ -15,7 +15,7 @@
   <body>
       <div class="container">
           <div class="row">
-            <h1>Terrible Barcode Generator</h1>
+            <h1>Barcode Generator</h1>
           </div>
           <div class="row">
               <div class="col-sm-12 col-lg-3">
@@ -99,7 +99,7 @@
             }
 
             function getDateTime(){
-              var currentDate = "Generated at: " + new Date().toLocaleString()
+              var currentDate = "Generated at: " + new Date().toLocaleString('en-GB')
               return currentDate;
             }
 
@@ -146,6 +146,8 @@
             $('#btn-print').click(function(e){
                 // hide everything except the barcodes and title + print it. 
                 // maybe display date printed too?
+                window.print() 
+
             })
         });
 
