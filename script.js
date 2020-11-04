@@ -193,7 +193,7 @@ $( document ).ready(function() {
           surname: {
             ptString: true
           },
-          address: {
+          address1: {
             ptString: true
           }
       },
@@ -201,7 +201,10 @@ $( document ).ready(function() {
         nhsNum: "Warning: Invalid NHS Number (Mod11 check failed)",
         postcode: "Warning: Invalid Postcode (Not valid UK postcode)",
         phoneNum: "Warning: Invalid Phone Number (Not valid UK phone number)",
-        dob: "Warning: Invalid DOB (Not between 6 and 8 digits excl. special characters)"
+        dob: "Warning: Invalid DOB (Not between 6 and 8 digits excl. special characters)",
+        firstName: "Warning: Invalid first name",
+        surname: "Warning: Invalid surname",
+        address1: "Warning: Invalid address"
       },
       highlight: function(element) {
         jQuery(element).closest('.form-control').addClass('is-invalid');
