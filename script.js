@@ -109,7 +109,6 @@ $( document ).ready(function() {
 
     /* Validate a date of birth */
     $.validator.addMethod("dateOfBirth", function(value, element) {
-
       function minMaxCharLength(str) {
         if (str.length >= 6 && str.length <= 8){
           return true;
@@ -118,11 +117,24 @@ $( document ).ready(function() {
       }
 
       var strNoSpecialChars = removeSpecialChars(value);
-      var cleanStr = removeSpecialChars(strNoSpecialChars);
-
+      var cleanStr = removeSpaces(strNoSpecialChars);
       return this.optional( element ) || minMaxCharLength(cleanStr);
     }, 'Please enter a valid date of birth.');
-    
+  
+    /* Validate a name */
+    $.validator.addMethod("ptName", function(value, element) {
+      function minMaxCharLength(str) {
+        if (str.length > 0){
+          return true;
+        }
+        return false;
+      }
+
+      var strNoSpecialChars = removeSpecialChars(value);
+      var cleanStr = removeSpaces(strNoSpecialChars);
+      return this.optional( element ) || minMaxCharLength(cleanStr);
+    }, 'Please enter a name.');
+
     /* Validate an NHS Number 
       Source: https://github.com/spikeheap/nhs-number-validator
       Generate valid NHS numbers: http://danielbayley.uk/nhs-number/
@@ -174,13 +186,19 @@ $( document ).ready(function() {
           },
           dob: {
             dateOfBirth: true
+          },
+          firstName: {
+            ptName: true
+          },
+          surname: {
+            ptName: true
           }
       },
       messages: {
         nhsNum: "Warning: Invalid NHS Number (Mod11 check failed)",
         postcode: "Warning: Invalid Postcode (Not valid UK postcode)",
         phoneNum: "Warning: Invalid Phone Number (Not valid UK phone number)",
-        dob: "Warning: Invalid DOB (Not between 6 and 8 digits, ignoring special characters)"
+        dob: "Warning: Invalid DOB (Not between 6 and 8 digits excl. special characters)"
       },
       highlight: function(element) {
         jQuery(element).closest('.form-control').addClass('is-invalid');
