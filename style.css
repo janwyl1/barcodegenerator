@@ -5,9 +5,6 @@ html {
     box-sizing: inherit;
   }
   
-/* .barcodes {
-    
-} */
 .barcode {
     display: block;
     margin-bottom: 12px;
