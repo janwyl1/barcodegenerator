@@ -91,12 +91,12 @@ $( document ).ready(function() {
     
     /* HANDLE FORM VALIDATION */
 
-    /* Validate a postcode using  GOV.UK Postcode Regex 
-      Source: https://stackoverflow.com/questions/164979/regex-for-matching-uk-postcodes 
+    /* Validate a postcode using  GOV.UK Postcode Regex - it's not perfect but should be fine for our use case
+      Source: https://stackoverflow.com/questions/164979/regex-for-matching-uk-postcodes (I added ? after the spaces as per ctwheels answer to make spaces optional)
       Source2: https://www.gov.uk/government/publications/bulk-data-transfer-for-sponsors-xml-schema
     */
     $.validator.addMethod("ukPostcode", function(value, element) {
-      return this.optional( element ) || /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])))) [0-9][A-Za-z]{2})$/.test( value );
+      return this.optional( element ) || /^([Gg][Ii][Rr] ?0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])))) ?[0-9][A-Za-z]{2})$/.test( value );
     }, 'Please enter a valid postcode.');
 
     /* Validate a phone number 
