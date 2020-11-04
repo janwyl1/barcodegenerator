@@ -122,7 +122,7 @@ $( document ).ready(function() {
     }, 'Please enter a valid date of birth.');
   
     /* Validate a name */
-    $.validator.addMethod("ptName", function(value, element) {
+    $.validator.addMethod("ptString", function(value, element) {
       function minMaxCharLength(str) {
         if (str.length > 0){
           return true;
@@ -188,10 +188,13 @@ $( document ).ready(function() {
             dateOfBirth: true
           },
           firstName: {
-            ptName: true
+            ptString: true
           },
           surname: {
-            ptName: true
+            ptString: true
+          },
+          address: {
+            ptString: true
           }
       },
       messages: {
