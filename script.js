@@ -29,6 +29,7 @@ $( document ).ready(function() {
       })
     }
 
+    /* Clear validation messages */
     function clearValidationMsgs() {
       $('.form-control').removeClass('is-invalid');
       $('.form-control').removeClass('is-valid');
@@ -106,6 +107,21 @@ $( document ).ready(function() {
       return this.optional( element ) || /^(((\+44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$/.test( value );
     }, 'Please enter a valid phone number.');
 
+    /* Validate a date of birth */
+    $.validator.addMethod("dateOfBirth", function(value, element) {
+
+      function minMaxCharLength(str) {
+        if (str.length >= 6 && str.length <= 8){
+          return true;
+        }
+        return false;
+      }
+
+      var strNoSpecialChars = removeSpecialChars(value);
+      var cleanStr = removeSpecialChars(strNoSpecialChars);
+
+      return this.optional( element ) || minMaxCharLength(cleanStr);
+    }, 'Please enter a valid date of birth.');
     
     /* Validate an NHS Number 
       Source: https://github.com/spikeheap/nhs-number-validator
@@ -157,15 +173,14 @@ $( document ).ready(function() {
             ukPhoneNum: true
           },
           dob: {
-            minlength: 6,
-            maxlength: 10
+            dateOfBirth: true
           }
       },
       messages: {
         nhsNum: "Warning: Invalid NHS Number (Mod11 check failed)",
         postcode: "Warning: Invalid Postcode (Not valid UK postcode)",
         phoneNum: "Warning: Invalid Phone Number (Not valid UK phone number)",
-        dob: "Warning: Invalid DOB (Not between 6 and 10 characters)"
+        dob: "Warning: Invalid DOB (Not between 6 and 8 digits, ignoring special characters)"
       },
       highlight: function(element) {
         jQuery(element).closest('.form-control').addClass('is-invalid');
