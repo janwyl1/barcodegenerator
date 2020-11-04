@@ -5,6 +5,11 @@ html {
     box-sizing: inherit;
   }
   
+
+.error {
+    color: #dc3545;
+    font-weight: 600;
+}
 .barcode {
     display: block;
     margin-bottom: 12px;
