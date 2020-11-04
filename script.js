@@ -162,12 +162,6 @@ $( document ).ready(function() {
           phoneNum: {
             ukPhoneNum: true
           },
-          // firstName: {
-          //   minlength: 1
-          // },
-          // lastName: {
-          //   minlength: 1
-          // },
           dob: {
             minlength: 6,
             maxlength: 10
