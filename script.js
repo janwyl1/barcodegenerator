@@ -87,6 +87,7 @@ $( document ).ready(function() {
 
     /* Trigger print dialogue when print is clicked */
     $('#btn-print').click(function(e){
+        e.preventDefault();
         window.print() 
     });
     
