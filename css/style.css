@@ -1,0 +1,30 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+
+.error {
+    color: #dc3545;
+    font-weight: 600;
+}
+.barcode {
+    display: block;
+    margin-bottom: 12px;
+}
+
+@media print {
+    .noPrint { display: none;}
+    .print-date {
+        display: block;
+    }
+    /* Always display columns side by side when printing */
+   .col-sm-12 {
+       float: left !important;
+       width: 50% !important;
+       max-width: 50%;
+   }
+
+} 
