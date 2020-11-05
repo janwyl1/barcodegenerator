@@ -1,86 +1,86 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="James Anwyl">
-    <link rel="shortcut icon" href="./favicon.ico" />
 
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="bootstrap-4.5.3.min.css">
-    <link rel="stylesheet" href="style.css">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="James Anwyl">
+  <link rel="shortcut icon" href="./favicon.ico" />
 
-    <title>Patient Barcode Generator</title>
-  </head>
-  <body>
-      <div class="container">
-          <div class="row my-4">
-            <div class="col-12">
-              <h1>Patient Barcode Generator</h1>
-            </div>
-            <div class="col-12">
-              <p class="lead">Generate 'Code 39' barcodes for easier data entry</p>
-            </div>          
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="css/bootstrap-4.5.3.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <title>Patient Barcode Generator</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row my-4">
+      <div class="col-12">
+        <h1>Patient Barcode Generator</h1>
+      </div>
+      <div class="col-12">
+        <p class="lead">Generate 'Code 39' barcodes for easier data entry</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-lg-3">
+        <form id="barcode-form" autocomplete="off">
+          <div class="form-group">
+            <label for="">NHS Number</label>
+            <input type="text" class="form-control barcode-inpt" name="nhsNum" id="input1">
           </div>
-          <div class="row">
-              <div class="col-sm-12 col-lg-3">
-                <form id="barcode-form" autocomplete="off">
-                    <div class="form-group">
-                      <label for="">NHS Number</label>
-                      <input type="text" class="form-control barcode-inpt" name="nhsNum" id="input1">
-                    </div>
-                    <div class="form-group">
-                      <label for="">First Name</label>
-                      <input type="text" class="form-control barcode-inpt" name="firstName" id="input2">
-                    </div>
-                    <div class="form-group">
-                      <label for="">Surname</label>
-                      <input type="text" class="form-control barcode-inpt" name="surname" id="input3">
-                    </div>
-                    <div class="form-group">
-                      <label for="">Date of Birth</label>
-                      <input type="text" class="form-control barcode-inpt" name="dob" id="input4">
-                    </div>
-                    <div class="form-group">
-                      <label for="">Address Line 1</label>
-                      <input type="text" class="form-control barcode-inpt" name="address1" id="input5">
-                  </div>
-                  <div class="form-group">
-                    <label for="">Postcode</label>
-                    <input type="text" class="form-control barcode-inpt" name="postcode" id="input6">
-                </div>                                     
-                    <div class="form-group">
-                        <label for="">Phone Number</label>
-                        <input type="text" class="form-control barcode-inpt" name="phoneNum" id="input7">
-                    </div>
-                    <button type="submit" class="btn btn-danger noPrint" id="btn-clear">Clear</button>
-                    <button type="submit" class="btn btn-success noPrint" id="btn-print">Print</button>
-                  </form>
-                 
-              </div>
-              <div class="col-sm-12 col-lg-8 offset-lg-1">
-                <svg id="barcode1" class="barcode"></svg>
-                <svg id="barcode2" class="barcode"></svg>
-                <svg id="barcode3" class="barcode"></svg>
-                <svg id="barcode4" class="barcode"></svg>
-                <svg id="barcode5" class="barcode"></svg>
-                <svg id="barcode6" class="barcode"></svg>
-                <svg id="barcode7" class="barcode"></svg>
-
-                <small class="print-date"></small>
-              </div>
-            
+          <div class="form-group">
+            <label for="">First Name</label>
+            <input type="text" class="form-control barcode-inpt" name="firstName" id="input2">
           </div>
+          <div class="form-group">
+            <label for="">Surname</label>
+            <input type="text" class="form-control barcode-inpt" name="surname" id="input3">
+          </div>
+          <div class="form-group">
+            <label for="">Date of Birth</label>
+            <input type="text" class="form-control barcode-inpt" name="dob" id="input4">
+          </div>
+          <div class="form-group">
+            <label for="">Address Line 1</label>
+            <input type="text" class="form-control barcode-inpt" name="address1" id="input5">
+          </div>
+          <div class="form-group">
+            <label for="">Postcode</label>
+            <input type="text" class="form-control barcode-inpt" name="postcode" id="input6">
+          </div>
+          <div class="form-group">
+            <label for="">Phone Number</label>
+            <input type="text" class="form-control barcode-inpt" name="phoneNum" id="input7">
+          </div>
+          <button type="submit" class="btn btn-danger noPrint" id="btn-clear">Clear</button>
+          <button type="submit" class="btn btn-success noPrint" id="btn-print">Print</button>
+        </form>
 
       </div>
-      
-    
-    <!-- JS Files -->
-    <script src="jquery-3.5.1.min.js"></script>
-    <script src="bootstrap-bundle-4.5.3.min.js"></script>
-    <script src="JsBarcode.all.min.js"></script>
-    <script src="jquery.validate.min.js"></script>
-    <script src="script.js"></script>
+      <div class="col-sm-12 col-lg-8 offset-lg-1">
+        <svg id="barcode1" class="barcode"></svg>
+        <svg id="barcode2" class="barcode"></svg>
+        <svg id="barcode3" class="barcode"></svg>
+        <svg id="barcode4" class="barcode"></svg>
+        <svg id="barcode5" class="barcode"></svg>
+        <svg id="barcode6" class="barcode"></svg>
+        <svg id="barcode7" class="barcode"></svg>
 
-  </body>
+        <small class="print-date"></small>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- JS Files -->
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script src="js/bootstrap-bundle-4.5.3.min.js"></script>
+  <script src="js/JsBarcode.all.min.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/script.js"></script>
+
+</body>
