@@ -35,6 +35,11 @@ $( document ).ready(function() {
       $('.form-control').removeClass('is-valid');
     }
 
+    /* Clear Generated at date/time */
+    function clearPrintDate() {
+      $('.print-date').empty(); 
+    }
+
     /* Generate date and time string */
     function getDateTime(){
       var currentDate = "Generated: " + new Date().toLocaleString('en-GB')
@@ -83,6 +88,7 @@ $( document ).ready(function() {
         clearAllInputs();
         clearAllSvgs();
         clearValidationMsgs();
+        clearPrintDate();
     });
 
     /* Trigger print dialogue when print is clicked */
