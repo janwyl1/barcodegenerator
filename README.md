@@ -1,4 +1,3 @@
-
 # Patient Barcode Generator
 Generates 'Code 39' barcodes for easier data entry
  
@@ -27,7 +26,6 @@ It's client-side only, no personal information is stored persistently or transmi
   
 
 ### Credits
-
 +  [JsBarcode library by lindell](https://lindell.me/JsBarcode/)
 +  [NHS Number Validator](https://github.com/spikeheap/nhs-number-validator)
 +  [NHS Number Generator / Validator](http://danielbayley.uk/nhs-number/) (for testing)
