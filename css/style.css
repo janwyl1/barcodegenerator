@@ -5,7 +5,10 @@ html {
     box-sizing: inherit;
   }
   
-
+.print-date {
+    display: block;
+    margin-top: 1em;
+}
 .error {
     color: #dc3545;
     font-weight: 600;
@@ -17,9 +20,7 @@ html {
 
 @media print {
     .noPrint { display: none;}
-    .print-date {
-        display: block;
-    }
+
     /* Always display columns side by side when printing */
    .col-sm-12 {
        float: left !important;
