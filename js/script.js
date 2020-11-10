@@ -114,20 +114,13 @@ $( document ).ready(function() {
       return this.optional( element ) || /^(((\+44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$/.test( value );
     }, 'Please enter a valid phone number.');
 
-    /* Validate a date of birth */
+    /* Validate a date of birth
+      Source: https://stackoverflow.com/questions/24380305/validate-date-in-dd-mm-yyyy-format-using-jquery-validate
+    */
     $.validator.addMethod("dateOfBirth", function(value, element) {
-      function minMaxCharLength(str) {
-        if (str.length >= 6 && str.length <= 8){
-          return true;
-        }
-        return false;
-      }
-
-      var strNoSpecialChars = removeSpecialChars(value);
-      var cleanStr = removeSpaces(strNoSpecialChars);
-      return this.optional( element ) || minMaxCharLength(cleanStr);
+      return this.optional( element ) || /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/.test( value );
     }, 'Please enter a valid date of birth.');
-  
+      
     /* Validate a name */
     $.validator.addMethod("ptString", function(value, element) {
       function minMaxCharLength(str) {
@@ -208,7 +201,7 @@ $( document ).ready(function() {
         nhsNum: "Warning: Invalid NHS Number (Mod11 check failed)",
         postcode: "Warning: Invalid Postcode (Not valid UK postcode)",
         phoneNum: "Warning: Invalid Phone Number (Not valid UK phone number)",
-        dob: "Warning: Invalid DOB (Not between 6 and 8 digits excl. special characters)",
+        dob: "Warning: Invalid Date",
         firstName: "Warning: Invalid first name",
         surname: "Warning: Invalid surname",
         address1: "Warning: Invalid address"
