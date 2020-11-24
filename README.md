@@ -12,9 +12,8 @@ This web form will be used in conjunction with a PSL program (PowerTerm Script L
 
 Form validation helps to reduce errors e.g. confirming if the NHS number is correct using the Mod11 check.
 
-It's client-side only, no personal information is stored persistently or transmitted anywhere.
+No personal information is stored persistently.
  
-
 ### How to use it
 1. Download Files
 2. Unzip
