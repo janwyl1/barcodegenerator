@@ -58,7 +58,7 @@ $( document ).ready(function() {
     
     /* ATTACH EVENT LISTENERS */
     /* Generate barcode when input field is changed. Remove special characters. Remove spaces from nhsNumbers, phoneNumbers and DOB's*/
-    $('.barcode-inpt').change(function(e){
+    $('.barcode-inpt').keyup(function(e){
       e.preventDefault();
       
       var el = $(this)[0];
