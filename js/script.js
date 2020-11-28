@@ -1,4 +1,3 @@
-/* When page has loaded */
 $( document ).ready(function() {
 
     /* See JsBarcode library - https://lindell.me/JsBarcode/ */
@@ -13,7 +12,6 @@ $( document ).ready(function() {
         });
     }
 
-    /* Clear all input fields */
     function clearAllInputs() {
       $('.barcode-inpt').each(function(){
         if ($(this).val() !== "") {
@@ -21,43 +19,38 @@ $( document ).ready(function() {
         }
       })
     }
-    
-    /* Clear all Barcode SVG's */
+
     function clearAllSvgs() {
       $('.barcode').each(function(){
           $(this).empty();
       })
     }
 
-    /* Clear validation messages */
     function clearValidationMsgs() {
       $('.form-control').removeClass('is-invalid');
       $('.form-control').removeClass('is-valid');
     }
 
-    /* Clear Generated at date/time */
-    function clearPrintDate() {
-      $('.print-date').empty(); 
-    }
 
-    /* Generate date and time string */
     function getDateTime(){
       var currentDate = "Generated: " + new Date().toLocaleString('en-GB')
       return currentDate;
     }
 
-    /* Print generated date and time */
     function generatePrintDate(){
       var datetime = getDateTime();
       $('.print-date').text(datetime)
     }
 
-    /* Remove special characters from string (CODE39 barcode format can support some special characters, but Telepath can't) */
+    function clearPrintDate() {
+      $('.print-date').empty(); 
+    }
+    
+    /* Remove special chars from string (CODE39 barcode format can support some special characters, but Telepath can't) */
     function removeSpecialChars(str) {
       return str.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
     }
 
-    /* Remove spaces from string */
     function removeSpaces(str) {
       return str.replace(/ /gi, '')
     }
@@ -68,7 +61,6 @@ $( document ).ready(function() {
     $('.barcode-inpt').change(function(e){
       e.preventDefault();
       
-      // remove spaces
       var el = $(this)[0];
       if (el.name === "nhsNum" || el.name === "phoneNum" || el.name === "dob") { 
         $(this).val(removeSpaces($(this).val()));
